@@ -72,7 +72,7 @@
             z-index: 0;  
             overflow: hidden;  
             opacity: 0.4;  
-            background-color: #080808; /* 画像がない部分の補完 */
+            background-color: #080808; 
         }  
           
         .hero-slider-overlay {  
@@ -87,7 +87,6 @@
             inset: 0;  
             opacity: 0;  
             transition: opacity 2s ease-in-out, transform 6s linear;  
-            /* [UPDATE] 画像全体を表示するための調整 */
             background-size: contain;  
             background-repeat: no-repeat;
             background-position: center;  
@@ -231,7 +230,6 @@
     <section id="hero" class="relative min-h-[90vh] flex flex-col justify-center px-6 pt-20 overflow-hidden">  
         <div class="hero-slider-container" id="hero-slider-container">  
             <div class="hero-slider-overlay"></div>  
-            <!-- 既存のスライド -->
             <div class="hero-slide active" style="background-image: url('https://pbs.twimg.com/media/HEfBjkFbQAEWSML?format=jpg&name=large')"></div>  
             <div class="hero-slide" style="background-image: url('https://pbs.twimg.com/media/G4fq1q9a8AI15hd?format=jpg&name=large')"></div>  
             <div class="hero-slide" style="background-image: url('https://pbs.twimg.com/media/G-8hbs_WQAA9oA0?format=jpg&name=large')"></div>  
@@ -287,6 +285,7 @@
             </div>  
   
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="works-grid">  
+                <!-- Works items (unchanged) -->
                 <div class="zzz-card group">  
                     <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
                         <img src="https://pbs.twimg.com/media/HEfBjkFbQAEWSML?format=jpg&name=medium" class="vivid-img" alt="Work">  
@@ -395,7 +394,7 @@
         </div>  
     </section>  
   
-    <!-- Personal Works Section -->  
+    <!-- Personal Works Section (unchanged) -->  
     <section id="personal" class="py-32 px-6 bg-zzz-red/5">  
         <div class="max-w-screen-2xl mx-auto">  
             <div class="flex justify-between items-end mb-16">  
@@ -491,8 +490,8 @@
                     </div>  
 
                     <div class="mt-12 max-w-3xl">
-                        <div class="zzz-card group overflow-hidden bg-black/40 border border-white/5 relative cursor-pointer" onclick="playVideo(this)">
-                            <div id="yt-thumb-container" class="aspect-video relative overflow-hidden bg-black">
+                        <div class="zzz-card group overflow-hidden bg-black/40 border border-white/5 relative">
+                            <div id="yt-thumb-container" class="aspect-video relative overflow-hidden bg-black cursor-pointer" onclick="playVideo(this)">
                                 <img src="https://img.youtube.com/vi/tQfpqHQGBns/maxresdefault.jpg" class="vivid-img opacity-60 group-hover:opacity-100 transition-opacity" alt="YouTube Thumbnail">
                                 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                                     <div class="w-16 h-16 bg-zzz-red rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
@@ -503,8 +502,20 @@
                                 </div>
                             </div>
                             <div class="p-5 border-t border-white/5">
-                                <span class="card-tag !mb-1">TOPIC</span>
-                                <h3 class="text-sm md:text-md font-black italic text-white/80 group-hover:text-zzz-red transition-colors">HUION様 15周年記念プロモーションムービー/ 「Kamvas Pro 19」制作メイキング</h3>
+                                <span class="card-tag !mb-1">Featured Video</span>
+                                <h3 class="text-sm md:text-md font-black italic text-white/80 group-hover:text-zzz-red transition-colors mb-4">DRAWING PROCESS // イラスト制作メイキング</h3>
+                                
+                                <!-- [ADD] コラボ相手リンクセクション -->
+                                <div class="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-white/5">
+                                    <a href="https://x.com/HuionLeon_JP?s=20" target="_blank" class="text-[10px] font-bold text-white/40 hover:text-white transition-colors flex items-center gap-1.5">
+                                        <span class="text-zzz-red">HUION</span>
+                                        <span class="opacity-50">@HuionLeon_JP</span>
+                                    </a>
+                                    <a href="https://x.com/siosionagasu_?s=20" target="_blank" class="text-[10px] font-bold text-white/40 hover:text-white transition-colors flex items-center gap-1.5">
+                                        <span class="text-zzz-red">塩ながす</span>
+                                        <span class="opacity-50">@siosionagasu_</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -602,16 +613,14 @@
             }, 6000);   
         }  
 
-        /* [ADD] WORKS画像をスライダーに動的に追加する処理 */
         function injectWorksImagesToSlider() {
             const worksGrid = document.getElementById('works-grid');
             const sliderContainer = document.getElementById('hero-slider-container');
             if (!worksGrid || !sliderContainer) return;
 
             const worksImages = worksGrid.querySelectorAll('img');
-            const addedUrls = new Set(); // 重複防止用（既にスライダーにあるURLなど）
+            const addedUrls = new Set(); 
             
-            // 既存スライドのURLを把握
             document.querySelectorAll('.hero-slide').forEach(slide => {
                 const url = slide.style.backgroundImage.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
                 addedUrls.add(url);
@@ -656,9 +665,7 @@
         }
   
         window.onload = () => {  
-            // 1. WORKS画像をスライダーに追加
             injectWorksImagesToSlider();
-            // 2. スライダー開始
             initHeroSlider();  
         };  
 
@@ -686,7 +693,7 @@
             const thumbContainer = container.querySelector('#yt-thumb-container');
             if (thumbContainer) {
                 thumbContainer.innerHTML = '<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/tQfpqHQGBns?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                container.onclick = null;
+                thumbContainer.onclick = null;
             }
         }
     </script>  
