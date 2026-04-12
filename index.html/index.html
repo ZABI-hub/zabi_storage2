@@ -95,7 +95,7 @@
   
         .hero-slide.active {  
             opacity: 1;  
-            transform: scale(1.1);
+            transform: scale(1.1);  
         }  
   
         /* --- Stylish Crack / Line Decor --- */  
@@ -194,8 +194,16 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);  
         }  
 
-        .hidden { display: none; }
-  
+        /* --- View More System Helper --- */
+        .grid-expandable {
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .more-item.hidden {
+            display: none;
+        }
+        .is-expanded .more-item.hidden {
+            display: block;
+        }
     </style>  
 </head>  
 <body class="antialiased bg-stripes overlay-fx" style="opacity: 0; overflow: hidden;">  
@@ -252,15 +260,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">  
                 <div class="max-w-md">  
                     <p class="text-sm font-bold leading-relaxed opacity-70 border-l-2 border-zzz-red pl-6">  
-                        ◆ZABI◆
+                        ZABI
                         イラストレーター。アニメ&ゲームFA/MV/TCG/KV etc. <br>  
-                        2026年5〜6月お仕事を受付中です。  
+                        2026年6月以降のお仕事を受付中です。  
                     </p>  
                     <div class="mt-12 flex items-center gap-10">  
                         <a href="#commercial" class="bg-white text-black px-10 py-4 text-xs font-black italic hover:bg-zzz-red hover:text-white transition-all -rotate-1">  
                             information  
                         </a>  
-                        <span class="text-[10px] font-bold opacity-30 italic tracking-[0.4em]">VER_2026.4</span>  
+                        <span class="text-[10px] font-bold opacity-30 italic tracking-[0.4em]">2026.4~</span>  
                     </div>  
                 </div>  
             </div>  
@@ -284,8 +292,7 @@
                 </div>  
             </div>  
   
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="works-grid">  
-                <!-- Works items (unchanged) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 grid-expandable max-h-[1200px] overflow-hidden" id="works-grid">  
                 <div class="zzz-card group">  
                     <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
                         <img src="https://pbs.twimg.com/media/HEfBjkFbQAEWSML?format=jpg&name=medium" class="vivid-img" alt="Work">  
@@ -350,8 +357,9 @@
                         <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「甘楽デイティー『レッテル』」</h3>  
                         <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社Sony Music Ent.</p>  
                     </div>  
-                </div>  
-  
+                </div>
+
+                <!-- [ADD] New Works Items -->
                 <div class="zzz-card group more-item hidden">  
                     <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
                         <img src="https://pbs.twimg.com/media/HD_4UG_bIAAYyLg?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
@@ -385,26 +393,105 @@
                     </div>  
                 </div>  
             </div>  
-
-            <div class="mt-8 flex justify-center">
-                <button onclick="toggleItems('works-grid', this)" class="px-10 py-3 border border-white/20 text-[10px] font-black italic tracking-[0.4em] hover:bg-zzz-red hover:border-zzz-red transition-all uppercase">
-                    View More
-                </button>
+            
+            <div class="mt-20 flex justify-center" id="works-more-btn-container">
+                <button onclick="toggleGrid('works-grid', this)" class="px-12 py-4 border border-white/20 text-xs font-black italic hover:bg-zzz-red hover:border-zzz-red transition-all">VIEW MORE</button>
             </div>
         </div>  
     </section>  
+
+    <!-- Music Video Section -->
+    <section id="mv" class="py-32 px-6 border-t border-white/5 bg-zzz-black">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <span class="text-zzz-red font-black text-[8px] tracking-[0.6em] block mb-2">02</span>
+                    <h2 class="text-5xl md:text-8xl font-black italic leading-none uppercase">Music Video</h2>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-expandable max-h-[800px] overflow-hidden" id="mv-grid">
+                <!-- MV Card Item -->
+                <a href="https://youtu.be/aOelHbwkRD4" target="_blank" class="zzz-card group">
+                    <div class="aspect-16/9 overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/aOelHbwkRD4/maxresdefault.jpg" class="vivid-img" alt="MV">
+                    </div>
+                    <div class="p-6">
+                        <span class="card-tag">MUSIC VIDEO</span>
+                        <h3 class="text-sm md:text-base font-black italic leading-tight group-hover:text-zzz-red transition-colors">∴煮ル果実「バーバヤーガ」with Flower＆可不 #GABULI【Official】- Baba Yaga</h3>
+                    </div>
+                </a>
+                <a href="https://youtu.be/wmTZOuoZWH4" target="_blank" class="zzz-card group">
+                    <div class="aspect-16/9 overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/wmTZOuoZWH4/maxresdefault.jpg" class="vivid-img" alt="MV">
+                    </div>
+                    <div class="p-6">
+                        <span class="card-tag">MUSIC VIDEO</span>
+                        <h3 class="text-sm md:text-base font-black italic leading-tight group-hover:text-zzz-red transition-colors">ハイド&ハイド / 柊キライ feat.吉乃 with.GABULI</h3>
+                    </div>
+                </a>
+                <a href="https://youtu.be/dyAfJqmDsxo" target="_blank" class="zzz-card group">
+                    <div class="aspect-16/9 overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/dyAfJqmDsxo/maxresdefault.jpg" class="vivid-img" alt="MV">
+                    </div>
+                    <div class="p-6">
+                        <span class="card-tag">MUSIC VIDEO</span>
+                        <h3 class="text-sm md:text-base font-black italic leading-tight group-hover:text-zzz-red transition-colors">Noisy Sweet Home / jon-YAKITORY + 音街ウナ with.GABULI</h3>
+                    </div>
+                </a>
+                <a href="https://youtu.be/9yLkCqAcu_k" target="_blank" class="zzz-card group">
+                    <div class="aspect-16/9 overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/9yLkCqAcu_k/maxresdefault.jpg" class="vivid-img" alt="MV">
+                    </div>
+                    <div class="p-6">
+                        <span class="card-tag">MUSIC VIDEO</span>
+                        <h3 class="text-sm md:text-base font-black italic leading-tight group-hover:text-zzz-red transition-colors">フェレス（feat.初音ミク＆MEIKO）／ 栗山夕璃 with #GABULI - Pheles‗Hatsune Miku＆MEIKO</h3>
+                    </div>
+                </a>
+                <a href="https://youtu.be/7lMt4I5ufHE" target="_blank" class="zzz-card group">
+                    <div class="aspect-16/9 overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/7lMt4I5ufHE/maxresdefault.jpg" class="vivid-img" alt="MV">
+                    </div>
+                    <div class="p-6">
+                        <span class="card-tag">MUSIC VIDEO</span>
+                        <h3 class="text-sm md:text-base font-black italic leading-tight group-hover:text-zzz-red transition-colors">アルトラエレジー / Aqu3ra feat. 初音ミク with #GABULI</h3>
+                    </div>
+                </a>
+                <a href="https://youtu.be/JAcEgJhrR00" target="_blank" class="zzz-card group">
+                    <div class="aspect-16/9 overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/JAcEgJhrR00/maxresdefault.jpg" class="vivid-img" alt="MV">
+                    </div>
+                    <div class="p-6">
+                        <span class="card-tag">MUSIC VIDEO</span>
+                        <h3 class="text-sm md:text-base font-black italic leading-tight group-hover:text-zzz-red transition-colors">甘楽デイティー × 栗山夕璃「レッテル」Official Music Video</h3>
+                    </div>
+                </a>
+                <a href="https://youtu.be/hJ7dtfeCg38" target="_blank" class="zzz-card group">
+                    <div class="aspect-16/9 overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/hJ7dtfeCg38/maxresdefault.jpg" class="vivid-img" alt="MV">
+                    </div>
+                    <div class="p-6">
+                        <span class="card-tag">MUSIC VIDEO</span>
+                        <h3 class="text-sm md:text-base font-black italic leading-tight group-hover:text-zzz-red transition-colors">柊マグネタイト - ファブリック・フラワー / 鏡音リン with GABULI</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="mt-20 flex justify-center">
+                <button onclick="toggleGrid('mv-grid', this)" class="px-12 py-4 border border-white/20 text-xs font-black italic hover:bg-zzz-red hover:border-zzz-red transition-all">VIEW MORE</button>
+            </div>
+        </div>
+    </section>
   
-    <!-- Personal Works Section (unchanged) -->  
+    <!-- Personal Works Section -->  
     <section id="personal" class="py-32 px-6 bg-zzz-red/5">  
         <div class="max-w-screen-2xl mx-auto">  
             <div class="flex justify-between items-end mb-16">  
                 <div>  
-                    <span class="text-zzz-red font-black text-[10px] tracking-[0.6em] block mb-2">02</span>  
+                    <span class="text-zzz-red font-black text-[10px] tracking-[0.6em] block mb-2">03</span>  
                     <h2 class="text-5xl md:text-8xl font-black italic leading-none uppercase">FANART</h2>  
                 </div>  
             </div>  
   
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="fanart-grid">  
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 grid-expandable max-h-[1000px] overflow-hidden" id="fanart-grid">  
                 <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
                     <img src="https://pbs.twimg.com/media/HE5OLhUaUAE9HPW?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
                 </div>  
@@ -423,12 +510,14 @@
                 <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
                     <img src="https://pbs.twimg.com/media/Gy8zisjboAErIb7?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
                 </div>  
-                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
                     <img src="https://pbs.twimg.com/media/Gzg2TyKbkAE6-si?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
                 </div>  
-                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
                     <img src="https://pbs.twimg.com/media/G1SZPnAbQAQIe5J?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                </div>  
+                </div>
+
+                <!-- [ADD] New Fanart Items -->
                 <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
                     <img src="https://pbs.twimg.com/media/GTaBSzKagAIjkYz?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
                 </div>  
@@ -442,11 +531,9 @@
                     <img src="https://pbs.twimg.com/media/Gp7EtkiakAAbDi1?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
                 </div>  
             </div>  
-
-            <div class="mt-8 flex justify-center">
-                <button onclick="toggleItems('fanart-grid', this)" class="px-10 py-3 border border-white/20 text-[10px] font-black italic tracking-[0.4em] hover:bg-zzz-red hover:border-zzz-red transition-all uppercase">
-                    View More
-                </button>
+            
+            <div class="mt-20 flex justify-center">
+                <button onclick="toggleGrid('fanart-grid', this)" class="px-12 py-4 border border-white/20 text-xs font-black italic hover:bg-zzz-red hover:border-zzz-red transition-all">VIEW MORE</button>
             </div>
         </div>  
     </section>  
@@ -470,7 +557,7 @@
 
                     <div class="max-w-3xl bg-white/5 p-8 border-l-4 border-zzz-red">  
                         <p class="text-lg font-bold italic text-white/90 leading-relaxed mb-6">  
-                            イラストレーターのザビです。
+                            イラストレーターのザビです
                             ポートフォリオサイトをご覧いただき、ありがとうございます。 
                         </p>  
                         <div class="space-y-4 text-sm font-medium leading-loose opacity-60">
@@ -483,7 +570,7 @@
                             <p>ご依頼時には以下の項目を明記いただけますようお願いいたします。<br>
                             ・使用用途・希望費用・希望納期・実績公開の可/不可・制作フロー。<br>
                             ・提出データの形式（制作サイズや解像度）・参考画像やPDF資料など。</p>
-                            <p>英語の読み書きに時間がかかるため、海外の方は日本語訳をご用意いただけますと幸いです。<br>
+                            <p>英訳に時間がかかるため、海外の方は日本語訳をご用意いただけますと幸いです。<br>
                             Because it takes time to read and write English, I appreciate it if you could request a Japanese translation.</p>
                             <p class="opacity-20">ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー</p>
                         </div>
@@ -508,11 +595,11 @@
                                 <!-- [ADD] コラボ相手リンクセクション -->
                                 <div class="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-white/5">
                                     <a href="https://x.com/HuionLeon_JP?s=20" target="_blank" class="text-[10px] font-bold text-white/40 hover:text-white transition-colors flex items-center gap-1.5">
-                                        <span class="text-zzz-red">企画：HUION</span>
+                                        <span class="text-zzz-red">HUION</span>
                                         <span class="opacity-50">@HuionLeon_JP</span>
                                     </a>
                                     <a href="https://x.com/siosionagasu_?s=20" target="_blank" class="text-[10px] font-bold text-white/40 hover:text-white transition-colors flex items-center gap-1.5">
-                                        <span class="text-zzz-red">モンスターデザイン：塩ながす</span>
+                                        <span class="text-zzz-red">塩ながす</span>
                                         <span class="opacity-50">@siosionagasu_</span>
                                     </a>
                                 </div>
@@ -591,19 +678,15 @@
   
         // Cards Animation  
         document.querySelectorAll('.zzz-card').forEach((card, i) => {  
-            if (!card.classList.contains('more-item')) {
-                gsap.from(card, {  
-                    scrollTrigger: { trigger: card, start: "top 90%" },  
-                    y: 60, opacity: 0, duration: 1, ease: "power4.out", delay: (i % 3) * 0.1  
-                });  
-            }
+            gsap.from(card, {  
+                scrollTrigger: { trigger: card, start: "top 90%" },  
+                y: 60, opacity: 0, duration: 1, ease: "power4.out", delay: (i % 3) * 0.1  
+            });  
         });  
   
         // Background Slider Logic  
         function initHeroSlider() {  
             const slides = document.querySelectorAll('.hero-slide');  
-            if (slides.length === 0) return;
-            
             let currentSlide = 0;  
   
             setInterval(() => {  
@@ -638,26 +721,27 @@
             });
         }
 
-        // Toggle Items Logic
-        function toggleItems(gridId, btn) {
+        // --- VIEW MORE SYSTEM ---
+        function toggleGrid(gridId, btn) {
             const grid = document.getElementById(gridId);
-            const moreItems = grid.querySelectorAll('.more-item');
-            const isExpanding = btn.innerText === "VIEW MORE";
-            
-            if (isExpanding) {
-                moreItems.forEach((item) => {
-                    item.classList.remove('hidden');
-                    gsap.fromTo(item, 
-                        { opacity: 0, y: 20 }, 
-                        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }
-                    );
-                });
-                btn.innerText = "CLOSE";
+            const isExpanded = grid.classList.contains('is-expanded');
+
+            if (!isExpanded) {
+                // Expand
+                grid.classList.add('is-expanded');
+                grid.style.maxHeight = grid.scrollHeight + "px";
+                btn.innerText = "SHOW LESS";
             } else {
-                moreItems.forEach((item) => {
-                    item.classList.add('hidden');
-                });
+                // Collapse
+                let initialHeight = "1000px";
+                if(gridId === 'works-grid') initialHeight = "1200px";
+                if(gridId === 'mv-grid') initialHeight = "800px";
+                
+                grid.style.maxHeight = initialHeight;
+                grid.classList.remove('is-expanded');
                 btn.innerText = "VIEW MORE";
+                
+                // Scroll back to section
                 const sectionId = gridId.split('-')[0];
                 const section = document.getElementById(sectionId);
                 section.scrollIntoView({ behavior: 'smooth' });
