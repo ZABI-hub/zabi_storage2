@@ -190,55 +190,8 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);  
         }  
 
-        /* MORE Button Style */
-        .more-btn-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 4rem;
-        }
-
-        .more-btn {
-            position: relative;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 1rem 4rem;
-            font-size: 0.75rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            letter-spacing: 0.4em;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            overflow: hidden;
-        }
-
-        .more-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #ff003c;
-            transition: all 0.4s ease;
-            z-index: -1;
-        }
-
-        .more-btn:hover {
-            border-color: #ff003c;
-            color: white;
-        }
-
-        .more-btn:hover::before {
-            left: 0;
-        }
-
-        .hidden-items {
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-        }
+        /* MORE Item Hidden Class */
+        .hidden { display: none; }
   
     </style>  
 </head>  
@@ -249,6 +202,7 @@
     <div class="max-w-screen-2xl mx-auto flex justify-between items-center p-5">  
         <div class="flex flex-col">  
             <span class="text-[9px] font-bold tracking-[0.5em] text-zzz-red mb-1">portfolio</span>  
+
             <div class="h-10 flex items-center">
                 <img 
                     src="https://pbs.twimg.com/profile_banners/787319477285203969/1775855936/1500x500" 
@@ -258,19 +212,19 @@
             </div>  
         </div>  
               
-            <div class="flex items-center gap-8">  
-                <div class="hidden lg:flex gap-10 text-[11px] font-bold tracking-[0.2em] uppercase italic">  
-                    <a href="#commercial" class="hover:text-zzz-red transition-all">WORKS</a>  
-                    <a href="#personal" class="hover:text-zzz-red transition-all">FANART</a>  
-                    <a href="#about" class="hover:text-zzz-red transition-all">ABOUT</a>  
-                </div>  
-                <div class="flex items-center gap-2">  
-                    <a href="https://x.com/ZabiMasurao/media" target="_blank" class="px-4 py-1.5 border border-white/10 text-[10px] font-black italic hover:bg-zzz-red transition-all">X_TWITTER</a>  
-                    <a href="https://www.pixiv.net/users/27716830" target="_blank" class="px-4 py-1.5 border border-white/10 text-[10px] font-black italic hover:bg-zzz-red transition-all">PIXIV</a>  
-                </div>  
+        <div class="flex items-center gap-8">  
+            <div class="hidden lg:flex gap-10 text-[11px] font-bold tracking-[0.2em] uppercase italic">  
+                <a href="#commercial" class="hover:text-zzz-red transition-all">WORKS</a>  
+                <a href="#personal" class="hover:text-zzz-red transition-all">FANART</a>  
+                <a href="#about" class="hover:text-zzz-red transition-all">ABOUT</a>  
+            </div>  
+            <div class="flex items-center gap-2">  
+                <a href="https://x.com/ZabiMasurao/media" target="_blank" class="px-4 py-1.5 border border-white/10 text-[10px] font-black italic hover:bg-zzz-red transition-all">X_TWITTER</a>  
+                <a href="https://www.pixiv.net/users/27716830" target="_blank" class="px-4 py-1.5 border border-white/10 text-[10px] font-black italic hover:bg-zzz-red transition-all">PIXIV</a>  
             </div>  
         </div>  
-    </nav>  
+    </div>  
+</nav>  
   
     <!-- Hero Section -->  
     <section id="hero" class="relative min-h-[90vh] flex flex-col justify-center px-6 pt-20 overflow-hidden">  
@@ -287,6 +241,7 @@
         <div class="relative z-10 max-w-screen-2xl mx-auto w-full">  
             <div class="flex items-center gap-4 mb-6">  
                 <span class="w-12 h-[2px] bg-zzz-red"></span>  
+                <p class="text-zzz-red font-bold text-[10px] tracking-[0.8em]"></p>  
             </div>  
               
             <h1 class="text-[14vw] md:text-[12rem] leading-[0.75] font-bold italic mb-14 tracking-tighter" id="hero-title">
@@ -316,7 +271,7 @@
     <div class="marquee-container">  
         <div class="marquee-content">  
             <span class="marquee-text">Thank you for watching. Thank you for watching.  </span>  
-            <span class="marquee-text">Thank you for watching. Thank you for watching.  </span>  
+            <span class="marquee-text">Thank you for watching.Thank you for watching.  </span>  
         </div>  
     </div>  
   
@@ -330,8 +285,7 @@
                 </div>  
             </div>  
   
-            <!-- 最初の5枚を表示 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">  
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="works-grid">  
                 <div class="zzz-card group">  
                     <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
                         <img src="https://pbs.twimg.com/media/HEfBjkFbQAEWSML?format=jpg&name=medium" class="vivid-img" alt="Work">  
@@ -385,59 +339,57 @@
                         <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「鳴潮 公式FA「エイメス」</h3>  
                         <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: Kuro Games</p>  
                     </div>  
-                </div>
-
-                <!-- 6枚目以降をラップ -->
-                <div class="hidden-items grid grid-cols-1 md:grid-cols-2 gap-8 col-span-full" id="works-more-content">
-                    <div class="zzz-card group">  
-                        <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
-                            <img src="https://pbs.twimg.com/media/HDXapNzaUAARzB0?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
-                        </div>  
-                        <div class="p-8">  
-                            <span class="card-tag">KEY VISUAL</span>  
-                            <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「甘楽デイティー『レッテル』」</h3>  
-                            <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社Sony Music Ent.</p>  
-                        </div>  
+                </div>  
+                  
+                <div class="zzz-card group">  
+                    <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
+                        <img src="https://pbs.twimg.com/media/HDXapNzaUAARzB0?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
                     </div>  
-      
-                    <div class="zzz-card group">  
-                        <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
-                            <img src="https://pbs.twimg.com/media/HD_4UG_bIAAYyLg?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
-                        </div>  
-                        <div class="p-8">  
-                            <span class="card-tag">ANNIVERSARY OC</span>  
-                            <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">HUION様 15周年記念OCイラスト</h3>  
-                            <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社HUION</p>  
-                        </div>  
+                    <div class="p-8">  
+                        <span class="card-tag">KEY VISUAL</span>  
+                        <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「甘楽デイティー『レッテル』」</h3>  
+                        <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社Sony Music Ent.</p>  
                     </div>  
-      
-                    <div class="zzz-card group">  
-                        <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
-                            <img src="https://pbs.twimg.com/media/G9XtFuEaYAALtTX?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
-                        </div>  
-                        <div class="p-8">  
-                            <span class="card-tag">ANNIVERSARY OC</span>  
-                            <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「ゼンレスゾーンゼロ」公式FA「葉瞬光」</h3>  
-                            <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社YomiHolic</p>  
-                        </div>  
+                </div>  
+  
+                <div class="zzz-card group more-item hidden">  
+                    <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
+                        <img src="https://pbs.twimg.com/media/HD_4UG_bIAAYyLg?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
                     </div>  
-      
-                    <div class="zzz-card group">  
-                        <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
-                            <img src="https://pbs.twimg.com/media/HEK1BHyaUAAWKfi?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
-                        </div>  
-                        <div class="p-8">  
-                            <span class="card-tag">OFFICIAL FANART</span>  
-                            <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「グリムコネクト」応援記念イラスト </h3>  
-                            <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社BookBase</p>  
-                        </div>  
+                    <div class="p-8">  
+                        <span class="card-tag">ANNIVERSARY OC</span>  
+                        <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">HUION様 15周年記念OCイラスト</h3>  
+                        <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社HUION</p>  
                     </div>  
-                </div>
+                </div>  
+  
+                <div class="zzz-card group more-item hidden">  
+                    <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
+                        <img src="https://pbs.twimg.com/media/G9XtFuEaYAALtTX?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
+                    </div>  
+                    <div class="p-8">  
+                        <span class="card-tag">ANNIVERSARY OC</span>  
+                        <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「ゼンレスゾーンゼロ」公式FA「葉瞬光」</h3>  
+                        <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社YomiHolic</p>  
+                    </div>  
+                </div>  
+  
+                <div class="zzz-card group more-item hidden">  
+                    <div class="aspect-16/10 md:aspect-3/2 overflow-hidden bg-black">  
+                        <img src="https://pbs.twimg.com/media/HEK1BHyaUAAWKfi?format=jpg&name=4096x4096" class="vivid-img" alt="Work">  
+                    </div>  
+                    <div class="p-8">  
+                        <span class="card-tag">OFFICIAL FANART</span>  
+                        <h3 class="text-lg md:text-xl font-black italic leading-tight mb-2">「グリムコネクト」応援記念イラスト </h3>  
+                        <p class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Client: 株式会社BookBase</p>  
+                    </div>  
+                </div>  
             </div>  
 
-            <!-- More Button -->
-            <div class="more-btn-container">
-                <button class="more-btn" onclick="toggleItems('works-more-content', this)">View More Works</button>
+            <div class="mt-8 flex justify-center">
+                <button onclick="toggleItems('works-grid', this)" class="px-10 py-3 border border-white/20 text-[10px] font-black italic tracking-[0.4em] hover:bg-zzz-red hover:border-zzz-red transition-all uppercase">
+                    View More
+                </button>
             </div>
         </div>  
     </section>  
@@ -452,8 +404,7 @@
                 </div>  
             </div>  
   
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">  
-                <!-- 最初の5枚 -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="fanart-grid">  
                 <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
                     <img src="https://pbs.twimg.com/media/HE5OLhUaUAE9HPW?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
                 </div>  
@@ -469,36 +420,33 @@
                 <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
                     <img src="https://pbs.twimg.com/media/FRA-UlWaQAAoH-q?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
                 </div>  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
+                    <img src="https://pbs.twimg.com/media/Gy8zisjboAErIb7?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
+                </div>  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                    <img src="https://pbs.twimg.com/media/Gzg2TyKbkAE6-si?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
+                </div>  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                    <img src="https://pbs.twimg.com/media/G1SZPnAbQAQIe5J?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
+                </div>  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                    <img src="https://pbs.twimg.com/media/GTaBSzKagAIjkYz?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
+                </div>  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                    <img src="https://pbs.twimg.com/media/GgXG384agAAuW3u?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
+                </div>  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                    <img src="https://pbs.twimg.com/media/GrrF1JvXcAAnLrr?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
+                </div>  
+                <div class="zzz-card group aspect-2/3 overflow-hidden bg-black more-item hidden">  
+                    <img src="https://pbs.twimg.com/media/Gp7EtkiakAAbDi1?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
+                </div>  
+            </div>  
 
-                <!-- 6枚目以降をラップ -->
-                <div class="hidden-items grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 col-span-full" id="fanart-more-content">
-                    <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
-                        <img src="https://pbs.twimg.com/media/Gy8zisjboAErIb7?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                    </div>  
-                    <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
-                        <img src="https://pbs.twimg.com/media/Gzg2TyKbkAE6-si?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                    </div>  
-                    <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
-                        <img src="https://pbs.twimg.com/media/G1SZPnAbQAQIe5J?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                    </div>  
-                    <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
-                        <img src="https://pbs.twimg.com/media/GTaBSzKagAIjkYz?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                    </div>  
-                    <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
-                        <img src="https://pbs.twimg.com/media/GgXG384agAAuW3u?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                    </div>  
-                    <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
-                        <img src="https://pbs.twimg.com/media/GrrF1JvXcAAnLrr?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                    </div>  
-                    <div class="zzz-card group aspect-2/3 overflow-hidden bg-black">  
-                        <img src="https://pbs.twimg.com/media/Gp7EtkiakAAbDi1?format=jpg&name=4096x4096" class="vivid-img" alt="Art">  
-                    </div>  
-                </div>
-            </div>
-
-            <!-- More Button -->
-            <div class="more-btn-container">
-                <button class="more-btn" onclick="toggleItems('fanart-more-content', this)">View More Fanart</button>
+            <div class="mt-8 flex justify-center">
+                <button onclick="toggleItems('fanart-grid', this)" class="px-10 py-3 border border-white/20 text-[10px] font-black italic tracking-[0.4em] hover:bg-zzz-red hover:border-zzz-red transition-all uppercase">
+                    View More
+                </button>
             </div>
         </div>  
     </section>  
@@ -648,9 +596,10 @@ I apologize for the inconvenience, but I would appreciate it if you could reques
             duration: 1.5, y: 120, opacity: 0, skewX: -5, ease: "expo.out"  
         });  
   
-        // Initial Cards Animation (visible cards)
+        // Cards Animation  
         document.querySelectorAll('.zzz-card').forEach((card, i) => {  
-            if (!card.closest('.hidden-items')) {
+            // 隠れている要素以外にアニメーションを適用
+            if (!card.classList.contains('more-item')) {
                 gsap.from(card, {  
                     scrollTrigger: { trigger: card, start: "top 90%" },  
                     y: 60, opacity: 0, duration: 1, ease: "power4.out", delay: (i % 3) * 0.1  
@@ -667,40 +616,36 @@ I apologize for the inconvenience, but I would appreciate it if you could reques
                 slides[currentSlide].classList.remove('active');  
                 currentSlide = (currentSlide + 1) % slides.length;  
                 slides[currentSlide].classList.add('active');  
-            }, 6000);  
-        }
+            }, 6000); // 6秒ごとに切り替え  
+        }  
 
-        // Toggle Visibility Logic
-        function toggleItems(targetId, btn) {
-            const container = document.getElementById(targetId);
-            const isHidden = container.style.display === 'none' || container.style.display === '';
-
-            if (isHidden) {
-                // Show items
-                container.style.display = 'grid';
-                gsap.to(container, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: "power3.out"
+        // Toggle Items Logic
+        function toggleItems(gridId, btn) {
+            const grid = document.getElementById(gridId);
+            const moreItems = grid.querySelectorAll('.more-item');
+            const isExpanding = btn.innerText === "VIEW MORE";
+            
+            if (isExpanding) {
+                // Open
+                moreItems.forEach((item) => {
+                    item.classList.remove('hidden');
+                    gsap.fromTo(item, 
+                        { opacity: 0, y: 20 }, 
+                        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }
+                    );
                 });
-                btn.innerText = "Close Items";
+                btn.innerText = "CLOSE";
             } else {
-                // Hide items
-                gsap.to(container, {
-                    opacity: 0,
-                    y: 20,
-                    duration: 0.5,
-                    ease: "power3.in",
-                    onComplete: () => {
-                        container.style.display = 'none';
-                    }
+                // Close
+                moreItems.forEach((item) => {
+                    item.classList.add('hidden');
                 });
-                btn.innerText = btn.innerText.includes('Works') ? "View More Works" : "View More Fanart";
+                btn.innerText = "VIEW MORE";
                 
-                // Scroll back to section top if closing
-                const sectionId = targetId.split('-')[0];
-                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                // Scroll back to top of the section
+                const sectionId = gridId.split('-')[0];
+                const section = document.getElementById(sectionId);
+                section.scrollIntoView({ behavior: 'smooth' });
             }
         }
   
