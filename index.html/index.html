@@ -195,7 +195,8 @@
   
     </style>  
 </head>  
-<body class="antialiased bg-stripes overlay-fx">  
+<!-- 読み込み時の演出のため、初期状態で非表示かつスクロール禁止 -->
+<body class="antialiased bg-stripes overlay-fx" style="opacity: 0; overflow: hidden;">  
   
  <!-- Header / Navigation -->  
 <nav class="fixed top-0 w-full z-[1100] glass-nav">  
@@ -652,6 +653,33 @@ I apologize for the inconvenience, but I would appreciate it if you could reques
         window.onload = () => {  
             initHeroSlider();  
         };  
+
+        // ページ読み込み時の演出追加
+        window.addEventListener("load", () => {
+            // 最上部へ強制移動
+            window.scrollTo(0, 0);
+
+            const tl = gsap.timeline();
+
+            tl.to("body", { 
+                // グリッチ演出（一瞬の左右への揺れ）
+                x: 5, 
+                duration: 0.025, 
+                repeat: 2, 
+                yoyo: true, 
+                ease: "none" 
+            })
+            .to("body", { 
+                // フェードイン
+                opacity: 1, 
+                duration: 0.8, 
+                ease: "power2.out",
+                onComplete: () => {
+                    // スクロール禁止を解除
+                    document.body.style.overflow = "auto";
+                }
+            });
+        });
     </script>  
 </body>  
 </html>
