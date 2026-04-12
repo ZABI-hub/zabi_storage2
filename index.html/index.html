@@ -613,6 +613,68 @@ I apologize for the inconvenience, but I would appreciate it if you could reques
         window.onload = () => {  
             initHeroSlider();  
         };  
+        // ←ここから追加！！！
+
+    // =======================
+    // WORKS toggle
+    // =======================
+    const worksBtn = document.getElementById("loadMoreWorks");
+    let worksOpen = false;
+
+    if (worksBtn) {
+        worksBtn.addEventListener("click", () => {
+            const items = document.querySelectorAll("#commercial .more-item");
+
+            worksOpen = !worksOpen;
+
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    if (worksOpen) {
+                        item.classList.remove("hidden");
+                        item.classList.add("show");
+                    } else {
+                        item.classList.remove("show");
+                        setTimeout(() => {
+                            item.classList.add("hidden");
+                        }, 300);
+                    }
+                }, index * 80);
+            });
+
+            worksBtn.textContent = worksOpen ? "CLOSE" : "MORE";
+        });
+    }
+
+    // =======================
+    // FANART toggle
+    // =======================
+    const fanartBtn = document.getElementById("loadMoreFanart");
+    let fanartOpen = false;
+
+    if (fanartBtn) {
+        fanartBtn.addEventListener("click", () => {
+            const items = document.querySelectorAll("#personal .more-item");
+
+            fanartOpen = !fanartOpen;
+
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    if (fanartOpen) {
+                        item.classList.remove("hidden");
+                        item.classList.add("show");
+                    } else {
+                        item.classList.remove("show");
+                        setTimeout(() => {
+                            item.classList.add("hidden");
+                        }, 300);
+                    }
+                }, index * 80);
+            });
+
+            fanartBtn.textContent = fanartOpen ? "CLOSE" : "MORE";
+        });
+    }
+
     </script>  
 </body>  
 </html>  
